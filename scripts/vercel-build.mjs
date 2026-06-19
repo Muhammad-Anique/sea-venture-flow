@@ -74,6 +74,12 @@ export default async function handler(req, res) {
 `
 );
 
+// Mark the function directory as ESM so Node.js loads server.js correctly
+fs.writeFileSync(
+  path.join(funcDir, 'package.json'),
+  JSON.stringify({ type: 'module' })
+);
+
 // Vercel Node.js Lambda config
 fs.writeFileSync(
   path.join(funcDir, '.vc-config.json'),
